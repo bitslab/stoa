@@ -30,3 +30,6 @@ public static void main(String args[]) throws IntrospectionException {
 
 ## Building
 $ mvn package
+
+## License
+GNU LGPL v3. Please see LICENSE file for details.
