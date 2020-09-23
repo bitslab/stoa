@@ -15,7 +15,7 @@
 */
 package org.decon.stoa.test.data;
 
-import org.eclipse.xtext.xbase.lib.util.ToStringBuilder;
+import java.util.Objects;
 
 public class Dummy1 {
     private String str1;
@@ -128,24 +128,11 @@ public class Dummy1 {
         this.notNestedInline = notNestedInline;
     }
 
+    @SuppressWarnings("boxing")
     @Override
     public int hashCode() {
-        final int prime = 31;
-        int result = 1;
-        result = prime * result + (bool1 ? 1231 : 1237);
-        result = prime * result + ((derivedInline == null) ? 0 : derivedInline.hashCode());
-        long temp;
-        temp = Double.doubleToLongBits(double1);
-        result = prime * result + (int) (temp ^ (temp >>> 32));
-        result = prime * result + ((inline == null) ? 0 : inline.hashCode());
-        result = prime * result + int1;
-        result = prime * result + ((nestedInline == null) ? 0 : nestedInline.hashCode());
-        result = prime * result + ((notInline == null) ? 0 : notInline.hashCode());
-        result = prime * result + ((notNestedInline == null) ? 0 : notNestedInline.hashCode());
-        result = prime * result + ((partialDerivedInline == null) ? 0 : partialDerivedInline.hashCode());
-        result = prime * result + ((str1 == null) ? 0 : str1.hashCode());
-        result = prime * result + ((testEnum == null) ? 0 : testEnum.hashCode());
-        return result;
+        return Objects.hash(bool1, derivedInline, double1, inline, int1, nestedInline, notInline, notNestedInline,
+                partialDerivedInline, str1, testEnum);
     }
 
     @Override
@@ -157,66 +144,22 @@ public class Dummy1 {
         if (getClass() != obj.getClass())
             return false;
         Dummy1 other = (Dummy1) obj;
-        if (bool1 != other.bool1)
-            return false;
-        if (derivedInline == null) {
-            if (other.derivedInline != null)
-                return false;
-        } else if (!derivedInline.equals(other.derivedInline))
-            return false;
-        if (Double.doubleToLongBits(double1) != Double.doubleToLongBits(other.double1))
-            return false;
-        if (inline == null) {
-            if (other.inline != null)
-                return false;
-        } else if (!inline.equals(other.inline))
-            return false;
-        if (int1 != other.int1)
-            return false;
-        if (nestedInline == null) {
-            if (other.nestedInline != null)
-                return false;
-        } else if (!nestedInline.equals(other.nestedInline))
-            return false;
-        if (notInline == null) {
-            if (other.notInline != null)
-                return false;
-        } else if (!notInline.equals(other.notInline))
-            return false;
-        if (notNestedInline == null) {
-            if (other.notNestedInline != null)
-                return false;
-        } else if (!notNestedInline.equals(other.notNestedInline))
-            return false;
-        if (partialDerivedInline == null) {
-            if (other.partialDerivedInline != null)
-                return false;
-        } else if (!partialDerivedInline.equals(other.partialDerivedInline))
-            return false;
-        if (str1 == null) {
-            if (other.str1 != null)
-                return false;
-        } else if (!str1.equals(other.str1))
-            return false;
-        if (testEnum != other.testEnum)
-            return false;
-        return true;
+        return bool1 == other.bool1 && Objects.equals(derivedInline, other.derivedInline)
+               && Double.doubleToLongBits(double1) == Double.doubleToLongBits(other.double1)
+               && Objects.equals(inline, other.inline) && int1 == other.int1
+               && Objects.equals(nestedInline, other.nestedInline) && Objects.equals(notInline, other.notInline)
+               && Objects.equals(notNestedInline, other.notNestedInline)
+               && Objects.equals(partialDerivedInline, other.partialDerivedInline) && Objects.equals(str1, other.str1)
+               && testEnum == other.testEnum;
     }
 
+    @SuppressWarnings("boxing")
+    @Override
     public String toString() {
-        ToStringBuilder b = new ToStringBuilder(this);
-        b.add("str1", this.str1);
-        b.add("bool1", this.bool1);
-        b.add("double1", this.double1);
-        b.add("int1", this.int1);
-        b.add("testEnum", this.testEnum);
-        b.add("notInline", this.notInline);
-        b.add("inline", this.inline);
-        b.add("derivedInline", this.derivedInline);
-        b.add("partialDerivedInline", this.partialDerivedInline);
-        b.add("nestedInline", this.nestedInline);
-        b.add("notNestedInline", this.notNestedInline);
-        return b.toString();
-      }
+        return String.format(
+                "Dummy1 [str1=%s, bool1=%s, double1=%s, int1=%s, testEnum=%s, notInline=%s, inline=%s, derivedInline=%s, partialDerivedInline=%s, nestedInline=%s, notNestedInline=%s]",
+                str1, bool1, double1, int1, testEnum, notInline, inline, derivedInline, partialDerivedInline,
+                nestedInline, notNestedInline);
+    }
 
 }

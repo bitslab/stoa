@@ -15,7 +15,7 @@
 */
 package org.decon.stoa.test.data;
 
-import org.eclipse.xtext.xbase.lib.util.ToStringBuilder;
+import java.util.Objects;
 
 public class Dummy2 {
     private String str1;
@@ -168,8 +168,15 @@ public class Dummy2 {
         this.long1 = long1;
     }
 
+    @SuppressWarnings("boxing")
     @Override
-    public boolean equals(final Object obj) {
+    public int hashCode() {
+        return Objects.hash(bool1, bool2, byte1, char1, double1, double2, float1, int1, int2, long1, short1, str1, str2,
+                testEnum1, testEnum2);
+    }
+
+    @Override
+    public boolean equals(Object obj) {
         if (this == obj)
             return true;
         if (obj == null)
@@ -177,93 +184,22 @@ public class Dummy2 {
         if (getClass() != obj.getClass())
             return false;
         Dummy2 other = (Dummy2) obj;
-        if (this.str1 == null) {
-            if (other.str1 != null)
-                return false;
-        } else if (!this.str1.equals(other.str1))
-            return false;
-        if (other.bool1 != this.bool1)
-            return false;
-        if (Double.doubleToLongBits(other.double1) != Double.doubleToLongBits(this.double1))
-            return false;
-        if (other.int1 != this.int1)
-            return false;
-        if (this.testEnum1 == null) {
-            if (other.testEnum1 != null)
-                return false;
-        } else if (!this.testEnum1.equals(other.testEnum1))
-            return false;
-        if (this.str2 == null) {
-            if (other.str2 != null)
-                return false;
-        } else if (!this.str2.equals(other.str2))
-            return false;
-        if (other.bool2 != this.bool2)
-            return false;
-        if (Double.doubleToLongBits(other.double2) != Double.doubleToLongBits(this.double2))
-            return false;
-        if (other.int2 != this.int2)
-            return false;
-        if (this.testEnum2 == null) {
-            if (other.testEnum2 != null)
-                return false;
-        } else if (!this.testEnum2.equals(other.testEnum2))
-            return false;
-        if (other.byte1 != this.byte1)
-            return false;
-        if (other.char1 != this.char1)
-            return false;
-        if (other.short1 != this.short1)
-            return false;
-        if (Float.floatToIntBits(other.float1) != Float.floatToIntBits(this.float1))
-            return false;
-        if (other.long1 != this.long1)
-            return false;
-        return true;
+        return bool1 == other.bool1 && bool2 == other.bool2 && byte1 == other.byte1 && char1 == other.char1
+               && Double.doubleToLongBits(double1) == Double.doubleToLongBits(other.double1)
+               && Double.doubleToLongBits(double2) == Double.doubleToLongBits(other.double2)
+               && Float.floatToIntBits(float1) == Float.floatToIntBits(other.float1) && int1 == other.int1
+               && int2 == other.int2 && long1 == other.long1 && short1 == other.short1
+               && Objects.equals(str1, other.str1) && Objects.equals(str2, other.str2) && testEnum1 == other.testEnum1
+               && testEnum2 == other.testEnum2;
     }
 
-    @Override
-    public int hashCode() {
-        final int prime = 31;
-        int result = 1;
-        result = prime * result + ((this.str1 == null) ? 0 : this.str1.hashCode());
-        result = prime * result + (this.bool1 ? 1231 : 1237);
-        result = prime * result
-                 + (int) (Double.doubleToLongBits(this.double1) ^ (Double.doubleToLongBits(this.double1) >>> 32));
-        result = prime * result + this.int1;
-        result = prime * result + ((this.testEnum1 == null) ? 0 : this.testEnum1.hashCode());
-        result = prime * result + ((this.str2 == null) ? 0 : this.str2.hashCode());
-        result = prime * result + (this.bool2 ? 1231 : 1237);
-        result = prime * result
-                 + (int) (Double.doubleToLongBits(this.double2) ^ (Double.doubleToLongBits(this.double2) >>> 32));
-        result = prime * result + this.int2;
-        result = prime * result + ((this.testEnum2 == null) ? 0 : this.testEnum2.hashCode());
-        result = prime * result + this.byte1;
-        result = prime * result + this.char1;
-        result = prime * result + this.short1;
-        result = prime * result + Float.floatToIntBits(this.float1);
-        result = prime * result + (int) (this.long1 ^ (this.long1 >>> 32));
-        return result;
-    }
-
+    @SuppressWarnings("boxing")
     @Override
     public String toString() {
-        ToStringBuilder b = new ToStringBuilder(this);
-        b.add("str1", this.str1);
-        b.add("bool1", this.bool1);
-        b.add("double1", this.double1);
-        b.add("int1", this.int1);
-        b.add("testEnum1", this.testEnum1);
-        b.add("str2", this.str2);
-        b.add("bool2", this.bool2);
-        b.add("double2", this.double2);
-        b.add("int2", this.int2);
-        b.add("testEnum2", this.testEnum2);
-        b.add("byte1", this.byte1);
-        b.add("char1", this.char1);
-        b.add("short1", this.short1);
-        b.add("float1", this.float1);
-        b.add("long1", this.long1);
-        return b.toString();
+        return String.format(
+                "Dummy2 [str1=%s, bool1=%s, double1=%s, int1=%s, testEnum1=%s, str2=%s, bool2=%s, double2=%s, int2=%s, testEnum2=%s, byte1=%s, char1=%s, short1=%s, float1=%s, long1=%s]",
+                str1, bool1, double1, int1, testEnum1, str2, bool2, double2, int2, testEnum2, byte1, char1, short1,
+                float1, long1);
     }
+
 }

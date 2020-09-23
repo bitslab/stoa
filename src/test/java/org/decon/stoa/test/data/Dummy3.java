@@ -15,7 +15,7 @@
 */
 package org.decon.stoa.test.data;
 
-import org.eclipse.xtext.xbase.lib.util.ToStringBuilder;
+import java.util.Objects;
 
 public class Dummy3 {
     private String str1;
@@ -118,8 +118,14 @@ public class Dummy3 {
         this.inline = inline;
     }
 
+    @SuppressWarnings("boxing")
     @Override
-    public boolean equals(final Object obj) {
+    public int hashCode() {
+        return Objects.hash(bool1, bool2, double1, double2, inline, int1, int2, str1, str2, testEnum);
+    }
+
+    @Override
+    public boolean equals(Object obj) {
         if (this == obj)
             return true;
         if (obj == null)
@@ -127,73 +133,19 @@ public class Dummy3 {
         if (getClass() != obj.getClass())
             return false;
         Dummy3 other = (Dummy3) obj;
-        if (this.str1 == null) {
-            if (other.str1 != null)
-                return false;
-        } else if (!this.str1.equals(other.str1))
-            return false;
-        if (other.bool1 != this.bool1)
-            return false;
-        if (Double.doubleToLongBits(other.double1) != Double.doubleToLongBits(this.double1))
-            return false;
-        if (other.int1 != this.int1)
-            return false;
-        if (this.str2 == null) {
-            if (other.str2 != null)
-                return false;
-        } else if (!this.str2.equals(other.str2))
-            return false;
-        if (other.bool2 != this.bool2)
-            return false;
-        if (Double.doubleToLongBits(other.double2) != Double.doubleToLongBits(this.double2))
-            return false;
-        if (other.int2 != this.int2)
-            return false;
-        if (this.testEnum == null) {
-            if (other.testEnum != null)
-                return false;
-        } else if (!this.testEnum.equals(other.testEnum))
-            return false;
-        if (this.inline == null) {
-            if (other.inline != null)
-                return false;
-        } else if (!this.inline.equals(other.inline))
-            return false;
-        return true;
+        return bool1 == other.bool1 && bool2 == other.bool2
+               && Double.doubleToLongBits(double1) == Double.doubleToLongBits(other.double1)
+               && Double.doubleToLongBits(double2) == Double.doubleToLongBits(other.double2)
+               && Objects.equals(inline, other.inline) && int1 == other.int1 && int2 == other.int2
+               && Objects.equals(str1, other.str1) && Objects.equals(str2, other.str2) && testEnum == other.testEnum;
     }
 
-    @Override
-    public int hashCode() {
-        final int prime = 31;
-        int result = 1;
-        result = prime * result + ((this.str1 == null) ? 0 : this.str1.hashCode());
-        result = prime * result + (this.bool1 ? 1231 : 1237);
-        result = prime * result
-                 + (int) (Double.doubleToLongBits(this.double1) ^ (Double.doubleToLongBits(this.double1) >>> 32));
-        result = prime * result + this.int1;
-        result = prime * result + ((this.str2 == null) ? 0 : this.str2.hashCode());
-        result = prime * result + (this.bool2 ? 1231 : 1237);
-        result = prime * result
-                 + (int) (Double.doubleToLongBits(this.double2) ^ (Double.doubleToLongBits(this.double2) >>> 32));
-        result = prime * result + this.int2;
-        result = prime * result + ((this.testEnum == null) ? 0 : this.testEnum.hashCode());
-        result = prime * result + ((this.inline == null) ? 0 : this.inline.hashCode());
-        return result;
-    }
-
+    @SuppressWarnings("boxing")
     @Override
     public String toString() {
-        ToStringBuilder b = new ToStringBuilder(this);
-        b.add("str1", this.str1);
-        b.add("bool1", this.bool1);
-        b.add("double1", this.double1);
-        b.add("int1", this.int1);
-        b.add("str2", this.str2);
-        b.add("bool2", this.bool2);
-        b.add("double2", this.double2);
-        b.add("int2", this.int2);
-        b.add("testEnum", this.testEnum);
-        b.add("inline", this.inline);
-        return b.toString();
+        return String.format(
+                "Dummy3 [str1=%s, bool1=%s, double1=%s, int1=%s, str2=%s, bool2=%s, double2=%s, int2=%s, testEnum=%s, inline=%s]",
+                str1, bool1, double1, int1, str2, bool2, double2, int2, testEnum, inline);
     }
+
 }

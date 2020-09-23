@@ -15,7 +15,7 @@
 */
 package org.decon.stoa.test.data;
 
-import org.eclipse.xtext.xbase.lib.util.ToStringBuilder;
+import java.util.Objects;
 
 public class Dummy22 extends Dummy2 {
     private byte byte2;
@@ -58,43 +58,32 @@ public class Dummy22 extends Dummy2 {
         this.long2 = long2;
     }
 
-    @Override
-    public boolean equals(final Object obj) {
-        if (this == obj)
-            return true;
-        if (obj == null)
-            return false;
-        if (getClass() != obj.getClass())
-            return false;
-        if (!super.equals(obj))
-            return false;
-        Dummy22 other = (Dummy22) obj;
-        if (other.byte2 != this.byte2)
-            return false;
-        if (other.short2 != this.short2)
-            return false;
-        if (Float.floatToIntBits(other.float2) != Float.floatToIntBits(this.float2))
-            return false;
-        if (other.long2 != this.long2)
-            return false;
-        return true;
-    }
-
+    @SuppressWarnings("boxing")
     @Override
     public int hashCode() {
         final int prime = 31;
         int result = super.hashCode();
-        result = prime * result + this.byte2;
-        result = prime * result + this.short2;
-        result = prime * result + Float.floatToIntBits(this.float2);
-        result = prime * result + (int) (this.long2 ^ (this.long2 >>> 32));
+        result = prime * result + Objects.hash(byte2, float2, long2, short2);
         return result;
     }
 
     @Override
-    public String toString() {
-        String result = new ToStringBuilder(this).addAllFields()
-                                                 .toString();
-        return result;
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (!super.equals(obj))
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        Dummy22 other = (Dummy22) obj;
+        return byte2 == other.byte2 && Float.floatToIntBits(float2) == Float.floatToIntBits(other.float2)
+               && long2 == other.long2 && short2 == other.short2;
     }
+
+    @SuppressWarnings("boxing")
+    @Override
+    public String toString() {
+        return String.format("Dummy22 [byte2=%s, short2=%s, float2=%s, long2=%s]", byte2, short2, float2, long2);
+    }
+
 }
