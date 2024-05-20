@@ -24,6 +24,16 @@ public class Dummy4 {
 
     private double double1;
 
+    private float float1;
+
+    private long long1;
+
+    private short short1;
+
+    private char char1;
+
+    private byte byte1;
+
     private int int1;
 
     private String str2;
@@ -33,6 +43,16 @@ public class Dummy4 {
     private double double2;
 
     private int int2;
+
+    private float float2;
+
+    private long long2;
+
+    private short short2;
+
+    private char char2;
+
+    private byte byte2;
 
     private TestEnum testEnum;
 
@@ -68,6 +88,18 @@ public class Dummy4 {
         this.int1 = int1;
     }
 
+    public float getFloat1() { return this.float1; }
+    public long  getLong1() { return this.long1; }
+    public short getShort1() { return this.short1; }
+    public char  getChar1() { return this.char1; }
+    public byte  getByte1() { return this.byte1; }
+
+    public void setFloat1(final float float1) { this.float1 = float1; }
+    public void setLong1(final long long1){ this.long1 = long1; }
+    public void setShort1(final short short1) { this.short1 = short1; }
+    public void setChar1(final char char1){ this.char1 = char1; }
+    public void setByte1(final byte byte1){ this.byte1 = byte1; }
+
     public String getStr2() {
         return this.str2;
     }
@@ -100,6 +132,18 @@ public class Dummy4 {
         this.int2 = int2;
     }
 
+    public float getFloat2() { return this.float2; }
+    public long  getLong2() { return this.long2; }
+    public short getShort2() { return this.short2; }
+    public char  getChar2() { return this.char2; }
+    public byte  getByte2() { return this.byte2; }
+
+    public void setFloat2(final float float2) { this.float2 = float2; }
+    public void setLong2(final long long2){ this.long2 = long2; }
+    public void setShort2(final short short2) { this.short2 = short2; }
+    public void setChar2(final char char2){ this.char2 = char2; }
+    public void setByte2(final byte byte2){ this.byte2 = byte2; }
+
     public TestEnum getTestEnum() {
         return this.testEnum;
     }
@@ -111,7 +155,7 @@ public class Dummy4 {
     @SuppressWarnings("boxing")
     @Override
     public int hashCode() {
-        return Objects.hash(bool1, bool2, double1, double2, int1, int2, str1, str2, testEnum);
+        return Objects.hash(bool1, bool2, double1, double2, int1, int2, str1, str2, long1, long2, float1, float2, short1, short2, char1, char2, byte1, byte2, testEnum);
     }
 
     @Override
@@ -127,6 +171,11 @@ public class Dummy4 {
                && Double.doubleToLongBits(double1) == Double.doubleToLongBits(other.double1)
                && Double.doubleToLongBits(double2) == Double.doubleToLongBits(other.double2) && int1 == other.int1
                && int2 == other.int2 && Objects.equals(str1, other.str1) && Objects.equals(str2, other.str2)
+               && char1 == other.char1 && char2 == other.char2
+               && short1 == other.short1 && short2 == other.short2
+               && byte1 == other.byte1 && byte2 == other.byte2
+               && long1 == other.long1 && long2 == other.long2
+               && float1 == other.float1 && float2 == other.float2
                && testEnum == other.testEnum;
     }
 
@@ -134,8 +183,14 @@ public class Dummy4 {
     @Override
     public String toString() {
         return String.format(
-                "Dummy4 [str1=%s, bool1=%s, double1=%s, int1=%s, str2=%s, bool2=%s, double2=%s, int2=%s, testEnum=%s]",
-                str1, bool1, double1, int1, str2, bool2, double2, int2, testEnum);
+                "Dummy4 [str1=%s, bool1=%s, double1=%s, int1=%s, str2=%s, bool2=%s, double2=%s, int2=%s," +
+                        "char1=%s, char2=%s, " +
+                        "short1=%s, short2=%s, " +
+                        "byte1=%s, byte2=%s, " +
+                        "long1=%s, long2=%s, " +
+                        "float1=%s, float2=%s, " +
+                        " testEnum=%s]",
+                str1, bool1, double1, int1, str2, bool2, double2, int2, char1, char2, short1, short2, byte1, byte2, long1, long2, float1, float2, testEnum);
     }
 
 }
